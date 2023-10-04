@@ -9,10 +9,15 @@ export enum Categories {
 export interface IToDo {
   text: string;
   id: number;
-  category: Categories;
+  category: string;
 }
 
-export const categroyState = atom<Categories>({
+export const categoryListState = atom<string[]>({
+  key: "categoryList",
+  default: [],
+});
+
+export const categoryState = atom<string>({
   key: "category",
   default: Categories.TO_DO,
 });
@@ -32,7 +37,7 @@ export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    const category = get(categroyState);
+    const category = get(categoryState);
 
     return toDos.filter((toDo) => toDo.category === category);
   },
