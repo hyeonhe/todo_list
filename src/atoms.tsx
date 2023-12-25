@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
 export enum Categories {
-  TO_DO = "TO_DO",
+  TO_DO = "TO DO",
   DOING = "DOING",
   DONE = "DONE",
 }

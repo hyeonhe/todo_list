@@ -8,12 +8,14 @@ const ButtonEl = styled.button`
   height: 100%;
   padding: 4px;
   border-radius: 4px;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin-left: 4px;
   font-size: 12px;
   cursor: pointer;
-  background-color: #ffcbd1;
-  color: grey;
+  background-color: #f8ffae;
+  /* box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1); */
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  /* color: grey; */
 `;
 
 const ToDoLi = styled.li`

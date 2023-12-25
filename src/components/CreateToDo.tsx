@@ -14,12 +14,11 @@ const Form = styled.form`
 `;
 
 const ToDoInput = styled.input`
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
   width: 240px;
-  /* opacity: 0.5; */
   border: none;
-  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   /* border-bottom: 1px solid black; */
   padding: 0px 10px;
   border-radius: 8px;
@@ -32,13 +31,13 @@ const ToDoInput = styled.input`
 `;
 
 const AddBtn = styled.button`
-  background-color: white;
-  width: 52px;
+  background-color: #f8ffae;
   padding: 12px;
   border-radius: 4px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
 `;
 
 function CreateToDo() {
@@ -62,7 +61,7 @@ function CreateToDo() {
         })}
         placeholder="Write a to do"
       />
-      <AddBtn>Add</AddBtn>
+      <AddBtn>ADD</AddBtn>
     </Form>
   );
 }
