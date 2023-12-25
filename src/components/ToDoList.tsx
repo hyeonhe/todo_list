@@ -8,10 +8,32 @@ import {
 } from "../atoms";
 import ToDo from "./ToDo";
 import { useForm } from "react-hook-form";
+import { styled } from "styled-components";
 
 interface ICategory {
   newCategory: string;
 }
+
+const ToDoListArea = styled.div`
+  width: 600px;
+  height: 600px;
+  padding: 32px 0px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
+  border-radius: 20px;
+  /* overflow-y: scroll; */
+`;
+
+const List = styled.div`
+  padding: 12px 0px;
+  width: 540px;
+  height: 100%;
+  overflow-y: scroll;
+`;
 
 function ToDoList() {
   const toDos = useRecoilValue(toDoSelector);
@@ -30,9 +52,16 @@ function ToDoList() {
   };
 
   return (
-    <div>
-      <h1>To Dos</h1>
-      <hr />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        padding: "10% 20%",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <form onSubmit={handleSubmit(handleValid)}>
         <input
           {...register("newCategory", { required: "Write a category" })}
@@ -50,10 +79,14 @@ function ToDoList() {
           </option>
         ))}
       </select>
-      <CreateToDo />
-      {toDos?.map((toDo) => (
-        <ToDo key={toDo.id} {...toDo} />
-      ))}
+      <ToDoListArea>
+        <CreateToDo />
+        <List>
+          {toDos?.map((toDo) => (
+            <ToDo key={toDo.id} {...toDo} />
+          ))}
+        </List>
+      </ToDoListArea>
     </div>
   );
 }

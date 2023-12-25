@@ -1,5 +1,41 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Categories, IToDo, categoryListState, toDoState } from "../atoms";
+import Button from "../UI/Button";
+import { styled } from "styled-components";
+
+const ButtonEl = styled.button`
+  width: auto;
+  height: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+  margin-left: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: #ffcbd1;
+  color: grey;
+`;
+
+const ToDoLi = styled.li`
+  /* width: 540px; */
+  height: 50px;
+  padding: 10px 12px 10px 20px;
+  /* padding: 10px 20px; */
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  /* box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1); */
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
   const categoryList = useRecoilValue(categoryListState);
@@ -36,33 +72,35 @@ function ToDo({ text, category, id }: IToDo) {
   };
 
   return (
-    <li>
+    <ToDoLi>
       <span>{text}</span>
-      {category !== Categories.DOING && (
-        <button name={Categories.DOING} onClick={onClick}>
-          Doing
-        </button>
-      )}
-      {category !== Categories.TO_DO && (
-        <button name={Categories.TO_DO} onClick={onClick}>
-          To Do
-        </button>
-      )}
-      {category !== Categories.DONE && (
-        <button name={Categories.DONE} onClick={onClick}>
-          Done
-        </button>
-      )}
-      {categoryList.map(
-        (value, index) =>
-          category !== value && (
-            <button name={value} onClick={onClick} key={index}>
-              {value}
-            </button>
-          )
-      )}
-      <button onClick={deleteCategory}>Delete</button>
-    </li>
+      <Buttons>
+        {category !== Categories.DOING && (
+          <ButtonEl name={Categories.DOING} onClick={onClick}>
+            Doing
+          </ButtonEl>
+        )}
+        {category !== Categories.TO_DO && (
+          <ButtonEl name={Categories.TO_DO} onClick={onClick}>
+            To Do
+          </ButtonEl>
+        )}
+        {category !== Categories.DONE && (
+          <ButtonEl name={Categories.DONE} onClick={onClick}>
+            Done
+          </ButtonEl>
+        )}
+        {categoryList.map(
+          (value, index) =>
+            category !== value && (
+              <ButtonEl name={value} onClick={onClick} key={index}>
+                {value}
+              </ButtonEl>
+            )
+        )}
+        <ButtonEl onClick={deleteCategory}>Delete</ButtonEl>
+      </Buttons>
+    </ToDoLi>
   );
 }
 
