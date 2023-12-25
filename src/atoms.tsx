@@ -12,9 +12,15 @@ export interface IToDo {
   category: string;
 }
 
+const { persistAtom: persistCategory } = recoilPersist({
+  key: "categoryLocal",
+  storage: localStorage,
+});
+
 export const categoryListState = atom<string[]>({
   key: "categoryList",
   default: [],
+  effects_UNSTABLE: [persistCategory],
 });
 
 export const categoryState = atom<string>({
