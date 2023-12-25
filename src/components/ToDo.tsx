@@ -11,7 +11,7 @@ function ToDo({ text, category, id }: IToDo) {
 
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-      const newToDo = { text, id, category: name as any };
+      const newToDo = { text, id, category: name };
       const newToDos = [
         ...oldToDos.slice(0, targetIndex),
         newToDo,
@@ -21,6 +21,20 @@ function ToDo({ text, category, id }: IToDo) {
       return newToDos;
     });
   };
+
+  const deleteCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
+      const newToDos = [
+        ...oldToDos.slice(0, targetIndex),
+        ...oldToDos.slice(targetIndex + 1),
+      ];
+      localStorage.setItem("todos", JSON.stringify(newToDos));
+
+      return newToDos;
+    });
+  };
+
   return (
     <li>
       <span>{text}</span>
@@ -47,6 +61,7 @@ function ToDo({ text, category, id }: IToDo) {
             </button>
           )
       )}
+      <button onClick={deleteCategory}>Delete</button>
     </li>
   );
 }
